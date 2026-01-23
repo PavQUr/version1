@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Алертус — Системы массового оповещения</title>
+  <meta name="description" content="Официальный поставщик комплекса технических средств оповещения КТСО П-166М. Проектирование, поставка, монтаж и техническое обслуживание.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Colors */
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --red-400: #f87171;
+      --red-500: #ef4444;
+      --green-400: #4ade80;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --white: #ffffff;
+    }
+    
+    /* Container */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    @media (min-width: 768px) {
+      .section-container {
+        padding: 0 48px;
+      }
+    }
+    
+    /* Section Padding */
+    .section-padding {
+      padding: 80px 0;
+    }
+    
+    @media (min-width: 768px) {
+      .section-padding {
+        padding: 120px 0;
+      }
+    }
+    
+    /* Glass Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-dark {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background: #3b82f6;
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Card Hover */
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--white);
+      font-weight: 700;
+    }
+    
+    .text-blue-400 {
+      color: var(--blue-400);
+    }
+    
+    .text-slate-300 {
+      color: var(--slate-300);
+    }
+    
+    .text-slate-400 {
+      color: var(--slate-400);
+    }
+    
+    .text-slate-500 {
+      color: var(--slate-500);
+    }
+    
+    /* Grid */
+    .grid {
+      display: grid;
+    }
+    
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .grid-cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .gap-4 {
+      gap: 16px;
+    }
+    
+    .gap-6 {
+      gap: 24px;
+    }
+    
+    .gap-8 {
+      gap: 32px;
+    }
+    
+    /* Flex */
+    .flex {
+      display: flex;
+    }
+    
+    .flex-col {
+      flex-direction: column;
+    }
+    
+    .items-center {
+      align-items: center;
+    }
+    
+    .items-start {
+      align-items: flex-start;
+    }
+    
+    .justify-center {
+      justify-content: center;
+    }
+    
+    .justify-between {
+      justify-content: space-between;
+    }
+    
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+    
+    .space-x-2 > * + * {
+      margin-left: 8px;
+    }
+    
+    .space-x-3 > * + * {
+      margin-left: 12px;
+    }
+    
+    .space-x-4 > * + * {
+      margin-left: 16px;
+    }
+    
+    .space-y-4 > * + * {
+      margin-top: 16px;
+    }
+    
+    .space-y-5 > * + * {
+      margin-top: 20px;
+    }
+    
+    .space-y-6 > * + * {
+      margin-top: 24px;
+    }
+    
+    /* Spacing */
+    .mb-2 { margin-bottom: 8px; }
+    .mb-3 { margin-bottom: 12px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+    .mb-8 { margin-bottom: 32px; }
+    .mb-10 { margin-bottom: 40px; }
+    .mb-12 { margin-bottom: 48px; }
+    .mb-16 { margin-bottom: 64px; }
+    .mt-1 { margin-top: 4px; }
+    .mt-8 { margin-top: 32px; }
+    .mr-2 { margin-right: 8px; }
+    .ml-2 { margin-left: 8px; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .p-4 { padding: 16px; }
+    .p-6 { padding: 24px; }
+    .p-8 { padding: 32px; }
+    .px-4 { padding-left: 16px; padding-right: 16px; }
+    .px-6 { padding-left: 24px; padding-right: 24px; }
+    .py-2 { padding-top: 8px; padding-bottom: 8px; }
+    .py-3 { padding-top: 12px; padding-bottom: 12px; }
+    .py-4 { padding-top: 16px; padding-bottom: 16px; }
+    .py-8 { padding-top: 32px; padding-bottom: 32px; }
+    
+    /* Border Radius */
+    .rounded-full { border-radius: 9999px; }
+    .rounded-lg { border-radius: 8px; }
+    .rounded-xl { border-radius: 12px; }
+    .rounded-2xl { border-radius: 16px; }
+    
+    /* Text */
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-xs { font-size: 12px; }
+    .text-sm { font-size: 14px; }
+    .text-lg { font-size: 18px; }
+    .text-xl { font-size: 20px; }
+    .text-2xl { font-size: 24px; }
+    .text-3xl { font-size: 30px; }
+    .text-4xl { font-size: 36px; }
+    .text-5xl { font-size: 48px; }
+    .text-6xl { font-size: 60px; }
+    .text-7xl { font-size: 72px; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    .font-mono { font-family: ui-monospace, monospace; }
+    .leading-tight { line-height: 1.25; }
+    .leading-relaxed { line-height: 1.625; }
+    
+    /* Width/Height */
+    .w-full { width: 100%; }
+    .w-2 { width: 8px; }
+    .w-5 { width: 20px; }
+    .w-6 { width: 24px; }
+    .w-8 { width: 32px; }
+    .w-10 { width: 40px; }
+    .w-12 { width: 48px; }
+    .w-14 { width: 56px; }
+    .w-16 { width: 64px; }
+    .h-2 { height: 8px; }
+    .h-5 { height: 20px; }
+    .h-6 { height: 24px; }
+    .h-8 { height: 32px; }
+    .h-10 { height: 40px; }
+    .h-12 { height: 48px; }
+    .h-14 { height: 56px; }
+    .h-16 { height: 64px; }
+    .max-w-2xl { max-width: 672px; }
+    .max-w-3xl { max-width: 768px; }
+    .max-w-4xl { max-width: 896px; }
+    
+    /* Position */
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .fixed { position: fixed; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .top-0 { top: 0; }
+    .left-0 { left: 0; }
+    .right-0 { right: 0; }
+    .z-10 { z-index: 10; }
+    .z-50 { z-index: 50; }
+    
+    /* Overflow */
+    .overflow-hidden { overflow: hidden; }
+    
+    /* Flex Shrink */
+    .flex-shrink-0 { flex-shrink: 0; }
+    
+    /* Icon Containers */
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .icon-blue {
+      background: rgba(59, 130, 246, 0.2);
+    }
+    
+    .icon-red {
+      background: rgba(239, 68, 68, 0.2);
+    }
+    
+    .icon-green {
+      background: rgba(74, 222, 128, 0.2);
+    }
+    
+    /* SVG Icons */
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    /* Form Inputs */
+    input, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: white;
+      font-family: inherit;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: var(--slate-500);
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    
+    textarea {
+      resize: none;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate-300);
+      margin-bottom: 8px;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+      50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+    }
+    
+    .animate-bounce {
+      animation: bounce 1s infinite;
+    }
+    
+    /* Blur Effects */
+    .blur-3xl {
+      filter: blur(64px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .lg-grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+      .lg-grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+      .lg-grid-cols-2 { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .md-grid-cols-2 { grid-template-columns: 1fr; }
+      .text-5xl { font-size: 36px; }
+      .text-6xl { font-size: 42px; }
+      .text-7xl { font-size: 48px; }
+      .hidden-mobile { display: none; }
+      .flex-col-mobile { flex-direction: column; }
+    }
+    
+    @media (max-width: 640px) {
+      .sm-grid-cols-2 { grid-template-columns: 1fr; }
+    }
+    
+    /* Page Break for PDF */
+    .page-break {
+      page-break-before: always;
+    }
+    
+    @media print {
+      body {
+        background: #0f172a !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .glass, .glass-dark {
+        background: rgba(30, 41, 59, 0.9) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      
+      .blur-3xl {
+        display: none;
+      }
+    }
+    
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 20px 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    header nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .logo-subtitle {
+      font-size: 12px;
+      color: var(--slate-400);
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .nav-links a {
+      padding: 8px 16px;
+      color: var(--slate-300);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    @media (max-width: 1024px) {
+      .nav-links, header .btn-primary {
+        display: none;
+      }
+    }
+    
+    /* Hero Section */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-bg-1 {
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      width: 384px;
+      height: 384px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .hero-bg-2 {
+      position: absolute;
+      bottom: 25%;
+      right: 25%;
+      width: 320px;
+      height: 320px;
+      background: rgba(37, 99, 235, 0.1);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.02;
+      background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
+                        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    
+    .hero-content {
+      text-align: center;
+      max-width: 896px;
+      margin: 0 auto;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      margin-bottom: 32px;
+    }
+    
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .hero-title {
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 60px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 72px;
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--slate-300);
+      margin-bottom: 40px;
+      max-width: 672px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-subtitle {
+        font-size: 24px;
+      }
+    }
+    
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+    
+    @media (min-width: 640px) {
+      .hero-buttons {
+        flex-direction: row;
+      }
+    }
+    
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+      font-size: 18px;
+      padding: 16px 32px;
+    }
+    
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+    }
+    
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      border-radius: 12px;
+    }
+    
+    .trust-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .trust-badge-text {
+      text-align: left;
+    }
+    
+    .trust-badge-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .trust-badge-subtitle {
+      font-size: 12px;
+      color: var(--slate-400);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .scroll-indicator-inner {
+      width: 24px;
+      height: 40px;
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 8px;
+    }
+    
+    .scroll-indicator-dot {
+      width: 4px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 9999px;
+    }
+    
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    
+    .section-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      color: var(--slate-300);
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+    
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 48px;
+      }
+    }
+    
+    .section-subtitle {
+      font-size: 20px;
+      color: var(--slate-400);
+      max-width: 672px;
+      margin: 0 auto;
+    }
+    
+    /* Problem Cards */
+    .problem-grid {
+      display: grid;
+      gap: 24px;
+    }
+    
+    @media (min-width: 768px) {
+      .problem-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .problem-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+    
+    .problem-card-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .problem-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .problem-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #f87171;
+    }
+    
+    .problem-title {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    
+    .problem-description {
+      color: var(--slate-400);
+      line-height: 1.6;
+    }
+    
+    /* Product Section */
+    .product-bg-1 {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 384px;
+      height: 384px;
+      background: rgba(59, 130, 246, 0.05);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .product-bg-2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 320px;
+      height: 320px;
+      background: rgba(37, 99, 235, 0.05);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .features-grid {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    
+    @media (min-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .feature-card {
+      padding: 24px;
+      border-radius: 16px;
+    }
+    
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #60a5fa;
+    }
+    
+    .feature-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .feature-description {
+      font-size: 14px;
+      color: var(--slate-400);
+      line-height: 1.6;
+    }
+    
+    /* Equipment List */
+    .equipment-box {
+      padding: 32px;
+      border-radius: 16px;
+    }
+    
+    @media (min-width: 768px) {
+      .equipment-box {
+        padding: 48px;
+      }
+    }
+    
+    .equipment-title {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .equipment-grid {
+      display: grid;
+      gap: 16px;
+    }
+    
+    @media (min-width: 640px) {
+      .equipment-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .equipment-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    .equipment-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .equipment-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    
+    .equipment-item-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .equipment-item-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+    }
+    
+    .equipment-item-year {
+      font-size: 12px;
+      color: var(--slate-500);
+      padding: 2px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    
+    .equipment-item-desc {
+      font-size: 12px;
+      color: var(--slate-400);
+    }
+    
+    /* Solutions Section */
+    .solutions-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    
+    .solution-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-family: inherit;
+      font-size: 16px;
+    }
+    
+    .solution-tab.active {
+      background: #3b82f6;
+      color: white;
+      box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25);
+    }
+    
+    .solution-tab:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--slate-300);
+    }
+    
+    .solution-tab:not(.active):hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .solution-content {
+      padding: 32px;
+      border-radius: 16px;
+    }
+    
+    @media (min-width: 768px) {
+      .solution-content {
+        padding: 48px;
+      }
+    }
+    
+    .solution-content-grid {
+      display: grid;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .solution-content-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .solution-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    
+    .solution-icon svg {
+      width: 32px;
+      height: 32px;
+      color: #60a5fa;
+    }
+    
+    .solution-title {
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+    
+    .solution-description {
+      font-size: 18px;
+      color: var(--slate-300);
+      margin-bottom: 24px;
+    }
+    
+    .solution-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .solution-feature {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .solution-feature:hover {
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    
+    .solution-feature-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #60a5fa;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    
+    .solution-feature-text {
+      color: var(--slate-200);
+    }
+    
+    /* Certification Section */
+    .cert-bg {
+      position: absolute;
+      top: 0;
+      right: 25%;
+      width: 384px;
+      height: 384px;
+      background: rgba(59, 130, 246, 0.05);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .cert-grid {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    
+    @media (min-width: 768px) {
+      .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .cert-card {
+      padding: 24px;
+      border-radius: 16px;
+    }
+    
+    .cert-card-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .cert-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .cert-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #60a5fa;
+    }
+    
+    .cert-number {
+      font-size: 14px;
+      color: #60a5fa;
+      font-family: ui-monospace, monospace;
+    }
+    
+    .cert-title {
+      font-size: 18px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    
+    .cert-description {
+      font-size: 14px;
+      color: var(--slate-400);
+    }
+    
+    /* Standards */
+    .standards-box {
+      padding: 32px;
+      border-radius: 16px;
+    }
+    
+    .standards-title {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .standards-grid {
+      display: grid;
+      gap: 16px;
+    }
+    
+    @media (min-width: 640px) {
+      .standards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .standards-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    .standard-item {
+      text-align: center;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .standard-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    
+    .standard-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: #60a5fa;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    
+    .standard-title {
+      font-size: 14px;
+      color: var(--slate-300);
+    }
+    
+    /* Contact Section */
+    .contact-bg-1 {
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      width: 384px;
+      height: 384px;
+      background: rgba(59, 130, 246, 0.05);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .contact-bg-2 {
+      position: absolute;
+      top: 25%;
+      right: 0;
+      width: 320px;
+      height: 320px;
+      background: rgba(37, 99, 235, 0.05);
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+    
+    .contact-grid {
+      display: grid;
+      gap: 48px;
+    }
+    
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .contact-info h3 {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+    
+    .contact-info > p {
+      color: var(--slate-300);
+      margin-bottom: 32px;
+    }
+    
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(59, 130, 246, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .contact-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #60a5fa;
+    }
+    
+    .contact-item-label {
+      font-weight: 600;
+      color: white;
+    }
+    
+    .contact-item-value {
+      color: var(--slate-300);
+    }
+    
+    .contact-item-value a {
+      color: var(--slate-300);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-item-value a:hover {
+      color: white;
+    }
+    
+    .contact-item-note {
+      font-size: 14px;
+      color: var(--slate-500);
+    }
+    
+    /* Manufacturer Box */
+    .manufacturer-box {
+      margin-top: 32px;
+      padding: 16px;
+      border-radius: 12px;
+    }
+    
+    .manufacturer-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .manufacturer-content svg {
+      width: 20px;
+      height: 20px;
+      color: #60a5fa;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .manufacturer-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 4px;
+    }
+    
+    .manufacturer-text {
+      font-size: 14px;
+      color: var(--slate-400);
+    }
+    
+    .manufacturer-text a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+    
+    .manufacturer-text a:hover {
+      color: #93c5fd;
+    }
+    
+    /* Contact Form */
+    .contact-form-box {
+      padding: 32px;
+      border-radius: 16px;
+    }
+    
+    .contact-form-box h3 {
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+    
+    .form-row {
+      display: grid;
+      gap: 16px;
+    }
+    
+    @media (min-width: 640px) {
+      .form-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-submit {
+      width: 100%;
+      font-size: 18px;
+      padding: 16px;
+    }
+    
+    .form-note {
+      font-size: 12px;
+      color: var(--slate-500);
+      text-align: center;
+      margin-top: 16px;
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 32px 0;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .footer-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    
+    .footer-name {
+      font-weight: 600;
+      color: white;
+    }
+    
+    .footer-copyright {
+      font-size: 14px;
+      color: var(--slate-400);
+      text-align: center;
+    }
+    
+    .footer-link {
+      font-size: 14px;
+      color: var(--slate-400);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="section-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">A</div>
+        <div>
+          <div class="logo-text">Алертус</div>
+          <div class="logo-subtitle">Системы оповещения</div>
+        </div>
+      </a>
+      
+      <div class="nav-links">
+        <a href="#about">О компании</a>
+        <a href="#products">Продукция</a>
+        <a href="#features">Возможности</a>
+        <a href="#certification">Сертификация</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      
+      <a href="#contacts" class="btn-primary">Запросить КП</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-bg-1"></div>
+    <div class="hero-bg-2"></div>
+    <div class="hero-grid"></div>
+    
+    <div class="section-container" style="position: relative; z-index: 10;">
+      <div class="hero-content">
+        <!-- Badge -->
+        <div class="hero-badge glass">
+          <span class="hero-badge-dot animate-pulse"></span>
+          <span class="text-sm text-slate-300">Комплексные решения для безопасности</span>
+        </div>
+        
+        <!-- Title -->
+        <h1 class="hero-title">
+          Системы массового<br>
+          <span class="text-blue-400">оповещения</span>
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="hero-subtitle">
+          Алертус — официальный поставщик и интегратор систем экстренного оповещения. 
+          Проектирование, поставка, монтаж и техническое обслуживание.
+        </p>
+        
+        <!-- Buttons -->
+        <div class="hero-buttons">
+          <a href="#contacts" class="btn-primary">
+            Запросить коммерческое предложение
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#products" class="btn-secondary">Наша продукция</a>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+          <div class="trust-badge glass">
+            <div class="trust-badge-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div class="trust-badge-text">
+              <div class="trust-badge-title">ГОСТ</div>
+              <div class="trust-badge-subtitle">Сертификация</div>
+            </div>
+          </div>
+          
+          <div class="trust-badge glass">
+            <div class="trust-badge-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/></svg>
+            </div>
+            <div class="trust-badge-text">
+              <div class="trust-badge-title">24/7</div>
+              <div class="trust-badge-subtitle">Техподдержка</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator animate-bounce">
+      <div class="scroll-indicator-inner">
+        <div class="scroll-indicator-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="problem" class="section-padding">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge glass">Проблема</span>
+        <h2 class="section-title">
+          Почему устаревшие системы<br>
+          <span class="text-blue-400">подводят</span>
+        </h2>
+        <p class="section-subtitle">
+          Традиционные системы оповещения не справляются с современными требованиями безопасности
+        </p>
+      </div>
+      
+      <div class="problem-grid">
+        <!-- Problem 1 -->
+        <div class="problem-card glass card-hover">
+          <div class="problem-card-content">
+            <div class="problem-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h3 class="problem-title">Медленная активация</h3>
+              <p class="problem-description">Устаревшие системы требуют ручного запуска, теряя драгоценные минуты в экстренной ситуации.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem 2 -->
+        <div class="problem-card glass card-hover">
+          <div class="problem-card-content">
+            <div class="problem-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            </div>
+            <div>
+              <h3 class="problem-title">Человеческий фактор</h3>
+              <p class="problem-description">Сложные процедуры активации приводят к ошибкам и задержкам в критический момент.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem 3 -->
+        <div class="problem-card glass card-hover">
+          <div class="problem-card-content">
+            <div class="problem-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <h3 class="problem-title">Ограниченный охват</h3>
+              <p class="problem-description">Аналоговые сирены не достигают людей в зданиях, шумных цехах и удалённых помещениях.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem 4 -->
+        <div class="problem-card glass card-hover">
+          <div class="problem-card-content">
+            <div class="problem-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+            </div>
+            <div>
+              <h3 class="problem-title">Отсутствие интеграции</h3>
+              <p class="problem-description">Невозможность связать систему оповещения с пожарной сигнализацией и другими системами безопасности.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Section -->
+  <section id="products" class="section-padding" style="position: relative;">
+    <div class="product-bg-1"></div>
+    <div class="product-bg-2"></div>
+    
+    <div class="section-container" style="position: relative; z-index: 10;">
+      <div class="section-header">
+        <span class="section-badge glass">Продукция</span>
+        <h2 class="section-title">
+          Комплекс<span class="text-blue-400"> КТСО П-166М</span>
+        </h2>
+        <p class="section-subtitle" style="max-width: 768px;">
+          Унифицированный комплекс технических средств оповещения нового поколения 
+          для передачи сигналов по всем типам каналов связи
+        </p>
+      </div>
+      
+      <!-- Features Grid -->
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card glass card-hover">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
+          </div>
+          <h3 class="feature-title">Многоканальная передача</h3>
+          <p class="feature-description">Цифровые сети 10Base-T/100Base-TX, каналы тональной частоты, телефонные линии, УКВ и КВ радиосвязь.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="feature-card glass card-hover">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7 9 3 5 7l4 4"/><path d="m17 11 4 4-4 4-4-4"/><path d="m8 12 4 4 6-6"/><path d="m16 8-3-3"/></svg>
+          </div>
+          <h3 class="feature-title">Космическая связь</h3>
+          <p class="feature-description">Интеграция с ПАК СЭО «Евразия» для передачи команд по каналам космической связи.</p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="feature-card glass card-hover">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="feature-title">Сотовые сети</h3>
+          <p class="feature-description">Передача сигналов оповещения через сети сотовых операторов для максимального охвата.</p>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="feature-card glass card-hover">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+          </div>
+          <h3 class="feature-title">Телерадиовещание</h3>
+          <p class="feature-description">Сопряжение с цифровыми сетями телерадиовещания для массового оповещения населения.</p>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="feature-card glass card-hover">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+          </div>
+          <h3 class="feature-title">Совместимость</h3>
+          <p class="feature-description">Работа с системами П-160, П-164, КТС П-166, П-166ВАУ (СГС-22М), СРО «ОТЗВУК».</p>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="feature-card glass card-hover">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
+          <h3 class="feature-title">IP-протоколы</h3>
+          <p class="feature-description">Поддержка IEEE 802.3i (10Base-T) и IEEE 802.3u (100Base-TX) для высокоскоростной передачи.</p>
+        </div>
+      </div>
+      
+      <!-- Equipment List -->
+      <div class="equipment-box glass">
+        <h3 class="equipment-title">Состав комплекса</h3>
+        <div class="equipment-grid">
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М АРМ ОД</span>
+              <span class="equipment-item-year">с 2019</span>
+            </div>
+            <p class="equipment-item-desc">АРМ оперативного дежурного</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М КПУ</span>
+              <span class="equipment-item-year">с 2017</span>
+            </div>
+            <p class="equipment-item-desc">Командный пульт управления</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М БОУ</span>
+              <span class="equipment-item-year">с 2012</span>
+            </div>
+            <p class="equipment-item-desc">Блок оповещения универсальный</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М БПРУ</span>
+              <span class="equipment-item-year">с 2012</span>
+            </div>
+            <p class="equipment-item-desc">Блок переключений универсальный</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М БМ</span>
+              <span class="equipment-item-year">с 2019</span>
+            </div>
+            <p class="equipment-item-desc">Блок мониторинга</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М ГРОМ</span>
+              <span class="equipment-item-year">с 2020</span>
+            </div>
+            <p class="equipment-item-desc">Громкоговоритель местный</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М ТКС</span>
+              <span class="equipment-item-year">с 2012</span>
+            </div>
+            <p class="equipment-item-desc">Телекоммуникационный сервер</p>
+          </div>
+          
+          <div class="equipment-item">
+            <div class="equipment-item-header">
+              <span class="equipment-item-name">П-166М СМиС</span>
+              <span class="equipment-item-year">с 2018</span>
+            </div>
+            <p class="equipment-item-desc">Сервер мониторинга</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Section -->
+  <section id="features" class="section-padding">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-badge glass">Отраслевые решения</span>
+        <h2 class="section-title">
+          Решения для<span class="text-blue-400"> вашей отрасли</span>
+        </h2>
+        <p class="section-subtitle">
+          Адаптированные системы оповещения для различных сфер деятельности
+        </p>
+      </div>
+      
+      <!-- Tabs -->
+      <div class="solutions-tabs">
+        <button class="solution-tab active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+          <span>Предприятия</span>
+        </button>
+        <button class="solution-tab">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          <span>Образование</span>
+        </button>
+        <button class="solution-tab">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+          <span>Промышленность</span>
+        </button>
+        <button class="solution-tab">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+          <span>Госструктуры</span>
+        </button>
+      </div>
+      
+      <!-- Content -->
+      <div class="solution-content glass">
+        <div class="solution-content-grid">
+          <div>
+            <div class="solution-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+            </div>
+            <h3 class="solution-title">Предприятия</h3>
+            <p class="solution-description">Комплексные решения для крупных предприятий и бизнес-центров</p>
+          </div>
+          
+          <div class="solution-features">
+            <div class="solution-feature">
+              <div class="solution-feature-number">1</div>
+              <span class="solution-feature-text">Интеграция с СКУД и видеонаблюдением</span>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-number">2</div>
+              <span class="solution-feature-text">Зонирование оповещения по этажам и секторам</span>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-number">3</div>
+              <span class="solution-feature-text">Автоматическое оповещение при пожарной тревоге</span>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-number">4</div>
+              <span class="solution-feature-text">Резервирование каналов связи</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certification Section -->
+  <section id="certification" class="section-padding" style="position: relative;">
+    <div class="cert-bg"></div>
+    
+    <div class="section-container" style="position: relative; z-index: 10;">
+      <div class="section-header">
+        <span class="section-badge glass">Сертификация</span>
+        <h2 class="section-title">
+          Сертификаты и<span class="text-blue-400"> лицензии</span>
+        </h2>
+        <p class="section-subtitle">
+          Полный пакет сертификатов для применения на территории РФ и стран ЕАЭС
+        </p>
+      </div>
+      
+      <!-- Certificates Grid -->
+      <div class="cert-grid">
+        <div class="cert-card glass card-hover">
+          <div class="cert-card-content">
+            <div class="cert-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+            </div>
+            <div>
+              <span class="cert-number">№ 5/116-4163/5438</span>
+              <h3 class="cert-title">Совместное решение</h3>
+              <p class="cert-description">Утверждение акта приемочных испытаний комплекса П-166М</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cert-card glass card-hover">
+          <div class="cert-card-content">
+            <div class="cert-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+            </div>
+            <div>
+              <span class="cert-number">№ ТС RU C-RU.АЖ26.В.01321</span>
+              <h3 class="cert-title">Сертификат ТС</h3>
+              <p class="cert-description">Сертификат соответствия Таможенного Союза</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cert-card glass card-hover">
+          <div class="cert-card-content">
+            <div class="cert-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <div>
+              <span class="cert-number">№ ТС RU C-RU.НА52.В.00009/19</span>
+              <h3 class="cert-title">Сертификат ЕАЭС</h3>
+              <p class="cert-description">Сертификат Евразийского Экономического Союза</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cert-card glass card-hover">
+          <div class="cert-card-content">
+            <div class="cert-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div>
+              <span class="cert-number">№ ТС RU C-RU.АЖ26.В.01296</span>
+              <h3 class="cert-title">Сертификат ТС</h3>
+              <p class="cert-description">Дополнительный сертификат для компонентов</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Standards -->
+      <div class="standards-box glass">
+        <h3 class="standards-title">Соответствие стандартам</h3>
+        <div class="standards-grid">
+          <div class="standard-item">
+            <div class="standard-badge">ГОСТ</div>
+            <span class="standard-title">Государственные стандарты РФ</span>
+          </div>
+          <div class="standard-item">
+            <div class="standard-badge">ФЗ-123</div>
+            <span class="standard-title">Пожарная безопасность</span>
+          </div>
+          <div class="standard-item">
+            <div class="standard-badge">РАСЦО</div>
+            <span class="standard-title">Региональные системы оповещения</span>
+          </div>
+          <div class="standard-item">
+            <div class="standard-badge">КСЭОН</div>
+            <span class="standard-title">Комплексная система экстренного оповещения</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacts" class="section-padding" style="position: relative;">
+    <div class="contact-bg-1"></div>
+    <div class="contact-bg-2"></div>
+    
+    <div class="section-container" style="position: relative; z-index: 10;">
+      <div class="section-header">
+        <span class="section-badge glass">Контакты</span>
+        <h2 class="section-title">
+          Свяжитесь<span class="text-blue-400"> с нами</span>
+        </h2>
+        <p class="section-subtitle">
+          Получите бесплатную консультацию и коммерческое предложение
+        </p>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Алертус</h3>
+          <p>
+            Официальный поставщик комплекса технических средств оповещения КТСО П-166М. 
+            Проектирование, поставка, монтаж и техническое обслуживание.
+          </p>
+          
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Телефон</div>
+                <div class="contact-item-value">
+                  <a href="tel:+78001234567">8 (800) 123-45-67</a>
+                </div>
+                <div class="contact-item-note">Бесплатно по России</div>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value">
+                  <a href="mailto:info@alertus.ru">info@alertus.ru</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Адрес</div>
+                <div class="contact-item-value">Москва, Россия</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Manufacturer Info -->
+          <div class="manufacturer-box glass">
+            <div class="manufacturer-content">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+              <div>
+                <div class="manufacturer-label">Производитель оборудования</div>
+                <div class="manufacturer-text">
+                  АО «Калужский завод телеграфной аппаратуры»<br>
+                  248002, г. Калуга, ул. Салтыкова-Щедрина, 141<br>
+                  <a href="https://kzta.ru" target="_blank" rel="noopener noreferrer">kzta.ru</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-box glass">
+          <h3>Запросить коммерческое предложение</h3>
+          
+          <form>
+            <div class="form-group">
+              <label for="name">Контактное лицо *</label>
+              <input type="text" id="name" name="name" placeholder="ФИО" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="organization">Организация *</label>
+              <input type="text" id="organization" name="organization" placeholder="Название организации" required>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-row">
+                <div>
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" placeholder="email@company.ru" required>
+                </div>
+                <div>
+                  <label for="phone">Телефон *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Описание проекта</label>
+              <textarea id="message" name="message" rows="3" placeholder="Опишите объект и требования..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn-primary form-submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              Отправить заявку
+            </button>
+            
+            <p class="form-note">
+              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="section-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">A</div>
+          <span class="footer-name">Алертус</span>
+        </div>
+        
+        <p class="footer-copyright">
+          © 2026 Алертус. Системы экстренного оповещения. Все права защищены.
+        </p>
+        
+        <a href="#contacts" class="footer-link">Контакты</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
